@@ -9,8 +9,8 @@ function get_animes_all() {
       echo "Could not query this query";
       exit;
   }
-  $products = $results->fetchAll(PDO::FETCH_ASSOC);
-  return $products;
+  $animes = $results->fetchAll(PDO::FETCH_ASSOC);
+  return $animes;
 }
 	
 
@@ -31,21 +31,18 @@ function get_anime_single($id){
         echo "Could not query this action";
     }
 
-    $product = $results->fetch(PDO::FETCH_ASSOC);
+    $anime = $results->fetch(PDO::FETCH_ASSOC);
 
-    if($product === false) return $product;
+    if($anime === false) return $anime;
 
-
-
-
-    $product['genres'] = array();
+    $anime['genres'] = array();
 
     try {
     	$results = $db->prepare("
     			select id_name
-					from animes_genres
-					inner join genres on animes_genres.genre_id = genre_id
-					where anime_id = ?
+          from animes_genres
+          inner join genres on animes_genres.genre_id = id_genre
+          where anime_id = ?
     		");
     	$results->bindParam(1, $id);
     	$results->execute();
@@ -55,21 +52,21 @@ function get_anime_single($id){
     }
 
      while($row = $results->fetch(PDO::FETCH_ASSOC)){
-        $product['id_name'][] = $row["id_name"];
+        $anime['id_name'][] = $row["id_name"];
     }
 
 
-    return $product;
+    return $anime;
 }
 
 
-	function get_list_view_html($product) {
+	function get_list_view_html($anime) {
 	    $output = "";
 	    $output = $output . '<tr>';
-	    $output = $output . '<td><img src="'.$product['anime_image'].'"/></td>';
-	    $output = $output . '<td><p>'.$product['anime_name'].'</p></td>';
-	    $output = $output . '<td><p>'.$product['anime_descricao'].'<p></td>';
-	    $output = $output . '<td><a href="detalhes.php?id='.$product['anime_id'].'">Detalhes</a></td>';
+	    $output = $output . '<td><img src="'.$anime['anime_image'].'"/></td>';
+	    $output = $output . '<td class="col-xs-2"><p>'.$anime['anime_name'].'</p></td>';
+	    $output = $output . '<td><p>'.$anime['anime_descricao'].'<p></td>';
+	    $output = $output . '<td><a href="detalhes.php?id='.$anime['anime_id'].'">Detalhes</a></td>';
 	    return $output;
 	}
 

@@ -28,3 +28,9 @@
         <h1>Aqui vem o banner do serviço!</h1>
        
       </div>
+
+      <a href="insert-anime.php" class="btn btn-primary btn-default" value="Cadastrar">Cadastrar</a>
+
+      <br><br>
+
+

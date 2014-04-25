@@ -1,24 +1,30 @@
 insert into animes(
-	anime_name, anime_jpname, anime_descricao, anime_image
+  anime_name, anime_jpname, anime_descricao, anime_image
 ) values (
-	"Mobile Suit Gundam", "機動戦士ガンダム", "In the year Universal Century 0079, humanity lives in space colonies called Sides. Side 3, the Principality of Zeon, has declared war on the Earth Federation. After the intial fighting, an 8-month stalemate occured. However that stalemate breaks when Amuro Ray stumbles into the Gundam, the Earth Federation's secret weapon. Now Amuro and the crew of White Base must stand up to Zeon in order to end the war.", "http://cdn.myanimelist.net/images/anime/5/12462.jpg"
+  "Mobile Suit Gundam", "機動戦士ガンダム", "In the year Universal Century 0079, humanity lives in space colonies called Sides. Side 3, the Principality of Zeon, has declared war on the Earth Federation. After the intial fighting, an 8-month stalemate occured. However that stalemate breaks when Amuro Ray stumbles into the Gundam, the Earth Federation's secret weapon. Now Amuro and the crew of White Base must stand up to Zeon in order to end the war.", "http://cdn.myanimelist.net/images/anime/5/12462.jpg"
 );
 
 
 
 insert into animes(
-	anime_name, anime_jpname, anime_descricao, anime_image
+  anime_name, anime_jpname, anime_descricao, anime_image
 ) values (
-	"Mobile Suit Zeta Gundam", "機動戦士Zガンダム", "The year is Universal Century 0087. Seven years have passed since the end of the One Year War. In its zeal to stamp out any remaining opposition, the Earth Federation has organized the Titans, an elite fighting force. However, the Titans soon get out of hand, committing atrocities on par with the worst the Principality of Zeon had to offer during the war. In response, dissatisified citizens, former Zeon soldiers, and even members of the Earth Federal Forces form a resistance group known as the Anti-Earth Union Group, or AEUG. As the next war is brewing, a small AEUG group arrives at Side 7 to investigate the new Gundam Mk. II...", "http://cdn.myanimelist.net/images/anime/6/11153.jpg");
+  "Mobile Suit Zeta Gundam", "機動戦士Zガンダム", "The year is Universal Century 0087. Seven years have passed since the end of the One Year War. In its zeal to stamp out any remaining opposition, the Earth Federation has organized the Titans, an elite fighting force. However, the Titans soon get out of hand, committing atrocities on par with the worst the Principality of Zeon had to offer during the war. In response, dissatisified citizens, former Zeon soldiers, and even members of the Earth Federal Forces form a resistance group known as the Anti-Earth Union Group, or AEUG. As the next war is brewing, a small AEUG group arrives at Side 7 to investigate the new Gundam Mk. II...", "http://cdn.myanimelist.net/images/anime/6/11153.jpg");
 
 
 insert into animes(
-	anime_name, anime_jpname, anime_descricao, anime_image
+  anime_name, anime_jpname, anime_descricao, anime_image
 ) values (
-	"Mobile Suit Zeta Gundam", "機動戦士Zガンダム", "The year is Universal Century 0087. Seven years have passed since the end of the One Year War. In its zeal to stamp out any remaining opposition, the Earth Federation has organized the Titans, an elite fighting force. However, the Titans soon get out of hand, committing atrocities on par with the worst the Principality of Zeon had to offer during the war. In response, dissatisified citizens, former Zeon soldiers, and even members of the Earth Federal Forces form a resistance group known as the Anti-Earth Union Group, or AEUG. As the next war is brewing, a small AEUG group arrives at Side 7 to investigate the new Gundam Mk. II...", "http://cdn.myanimelist.net/images/anime/6/11153.jpg");
+  "Mobile Suit Zeta Gundam", "機動戦士Zガンダム", "The year is Universal Century 0087. Seven years have passed since the end of the One Year War. In its zeal to stamp out any remaining opposition, the Earth Federation has organized the Titans, an elite fighting force. However, the Titans soon get out of hand, committing atrocities on par with the worst the Principality of Zeon had to offer during the war. In response, dissatisified citizens, former Zeon soldiers, and even members of the Earth Federal Forces form a resistance group known as the Anti-Earth Union Group, or AEUG. As the next war is brewing, a small AEUG group arrives at Side 7 to investigate the new Gundam Mk. II...", "http://cdn.myanimelist.net/images/anime/6/11153.jpg");
 
 
 select * from animes;
+
+
+/* FAZENDO O UPDATE DE UM REGISTRO */
+update animes 
+set anime_descricao ="U.C. 0093 - Char Aznable, the infamous 'Red Comet' of the One Year War, has come out of hiding to lead the Neo-Zeon Army and wage war against the Earth Federation. Only his greatest rival, Gundam pilot Amuro Ray, can stop him from dropping the Axis asteroid on Earth and causing a major global catastrophe." where anime_id =4;
+
 
 
 /* CRIANDO A TABELA DE GENEROS */
@@ -46,17 +52,19 @@ CREATE TABLE `animes_genres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
+delete from animes_genres where anime_id = 4;
+
+select * from animes_genres;
+
 /*  INSERINDO DATA NA TABLE anime_genres referenciando tando anime_id quando genero_id */
-INSERT INTO `animes_genres` (`anime_id`, `genre_id`) VALUES(2, 1); /* gundam 0079 mecha*/
-INSERT INTO `animes_genres` (`anime_id`, `genre_id`) VALUES(2, 2); /* gundam 0079 action */
-INSERT INTO `animes_genres` (`anime_id`, `genre_id`) VALUES(2, 3); /* gundam 0079 drama */
+INSERT INTO animes_genres (anime_id, genre_id) VALUES(4, 1); /* unicorn mecha*/
 
 
 /* QUERY RESPONSAVEL POR MOSTRAR A RELAÇÃO ANIMExGENEROS */
 select id_name
 from animes_genres
-inner join genres on animes_genres.genre_id = genre_id
-where anime_id = 2;
+inner join genres on animes_genres.genre_id = id_genre
+where anime_id = 4;
 
 
 

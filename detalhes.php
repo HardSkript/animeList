@@ -6,20 +6,20 @@
 
         if(isset($_GET["id"])) {
           $anime_id = $_GET["id"];
-          $product  = get_anime_single($anime_id);
+          $anime  = get_anime_single($anime_id);
         } else { echo "Error!"; }
 
         
         include 'inc/header.php';
 
-        var_dump($product);
+        var_dump($anime);
 
       ?>
 
       <div class="panel panel-default">
         <div class="panel-heading">Navegação</div>
         <div class="panel-body">
-          <a href="index.php">Home</a> - <span></span>
+          <a href="index.php">Home</a> - <?php echo $anime['anime_name']; ?><span></span>
         </div>
       </div>
 
@@ -32,7 +32,7 @@
           <div class="col-md-3">
             
             <div class="ani-imagem">
-              <img src="" alt="">
+              <img src="<?php echo $anime['anime_image']; ?>" alt="<?php echo $anime['anime_image']; ?>">
             </div>
             
             <div class="ani-download">
@@ -61,16 +61,23 @@
               <!-- PRIMEIRA ABA 'SUMÁRIO' -->
               <div class="tab-pane active" id="home">
                 <div class="ani-titulo">
-                  <h1></h1>
+                  <h1><?php echo $anime['anime_name'] .' '. $anime['anime_jpname']; ?></h1>
                 </div>
                 
                 <div class="ani-descricao">
-                  <p></p>
+                  <p><?php echo $anime['anime_descricao']; ?></p>
                 </div>
 
                 <div class="ani-generos">
 
                   <h3>Gêneros</h3>
+
+                  <ul>
+                    <?php foreach($anime['id_name'] as $animegenre){ ?>
+                      <li><?php echo $animegenre; ?></li>  
+                    <?php } ?>
+                    
+                  </ul>
 
                 </div>
                 

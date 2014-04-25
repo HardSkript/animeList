@@ -11,7 +11,7 @@
       <!-- AQUI VEM UMA TABELA COM TODOS OS ITENS -->
       <div class="ani_items">
         
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered">
           <thead>
             <th>Imagem</th>
             <th>Nome do anime</th>
