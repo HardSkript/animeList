@@ -1,3 +1,13 @@
+    
+    
+
+    <div id="result">
+        
+        <h1>result</h1>
+        
+        
+    </div>
+
     </div>
     
 		<div class="ani-footer" style="background:#ccc; padding:20px;">

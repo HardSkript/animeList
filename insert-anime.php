@@ -5,17 +5,17 @@
 
 
 		// QUERYING GENRES
-		  require('inc/database.php');
-		  try{
-		      $genrebusca = $db->query("SELECT * FROM genres");
-		  } catch (Exception $e){
-		      echo "Could not query this query";
-		      exit;
-		  }
-		  
-		  while($row = $genrebusca->fetch(PDO::FETCH_ASSOC)){
-        $genres['id_name'][] = $row["id_name"];
-    	}
+	  require('inc/database.php');
+	  try{
+	      $genrebusca = $db->query("SELECT * FROM genres");
+	  } catch (Exception $e){
+	      echo "Could not query this query";
+	      exit;
+	  }
+	  
+	  while($row = $genrebusca->fetch(PDO::FETCH_ASSOC)){
+      $genres['id_name'][] = $row["id_name"];
+  	}
 			
 
 	// PEGANDO OS DADOS DO FORM E PASSANDO PARA VARIÁVEIS
@@ -28,6 +28,8 @@
 		// INSERTING ANIME
 	  require('inc/database.php');
 	  try { 
+
+	  	// INSERINDO O ANIME NA BASE DE DADOS
 	    $insert = $db->prepare('INSERT INTO animes VALUES(NULL, :animeNome, :animeJpName, :animeDescricao, :animeImage)');
 	    $insert->execute(array(
 	      ':animeNome' => $animeNome,
@@ -35,7 +37,7 @@
 	      ':animeDescricao' => $animeDescricao,
 	      ':animeImage' => $animeImage
 	    ));
-	 
+
 	    # Affected Rows?
 	    echo $insert->rowCount(); // 1
 	  } catch(PDOException $e) {
@@ -73,11 +75,17 @@
 		  	<label for="animeDescricao">Anime Description</label>
 		  	<textarea class="form-control" rows="3" id="animeDescricao" name="animeDescricao"></textarea>
 		  </div>
+		  
+		  <!-- INSERTING ANIME EPISODES -->
+		  <div class="form-group">
+		  	<label for="animeImage">Imagem do anime</label>
+		  	<input type="text" class="form-control" id="animeImage" name="animeImage" placeholder="Caminho da imagem">
+		  </div>
 
 		  <!-- INSERTING ANIME GENRES -->
 		  <div class="form-group">
-		  	<label for="animeImage">Anime Image = url please</label>
-		  	<input type="text" class="form-control" id="animeImage" name="animeImage">
+		  	<label for="name_episodio">Nome do episódio</label>
+		  	<input type="text" class="form-control" id="name_episodio" name="name_episodio" placeholder="Nome japones do anime">
 		  </div>
 
 		 <?php 
