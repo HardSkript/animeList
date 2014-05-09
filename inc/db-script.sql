@@ -54,6 +54,16 @@ CREATE TABLE anime_episodios (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
+create table episodios (
+  id_episodio int(11) NOT NULL AUTO_INCREMENT,
+  name_episodio varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  id_anime int(11) NOT NULL,
+  primary key (id_episodio)
+) ENGINE=InnoDB DEFAULT charset=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
+
+
+
+
 
 /* CRIANDO A TABELA DE GENEROS */
 CREATE TABLE `genres` (
@@ -63,12 +73,14 @@ CREATE TABLE `genres` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5;
 
 
-create table episodios (
-  id_episodio int(11) NOT NULL AUTO_INCREMENT,
-  name_episodio varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  id_anime int(11) NOT NULL,
-  primary key (id_episodio)
-) ENGINE=InnoDB DEFAULT charset=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;
+insert into videos (name_video, id_anime) values("時をこえて", 1);
+insert into relaciona_video (id_do_video, id_do_anime) values (1, 1);
+
+/* querie que irá buscar todos os vídeos referentes ao anime 1 */
+select * 
+from videos
+inner join relaciona_video on videos.id_anime = id_do_anime
+where id_anime = 1;
 
 
 /*  INSERINDO DATA NA TABLE anime_genres referenciando tando anime_id quando genero_id */
@@ -123,5 +135,3 @@ select * from anime_episodios;
 
 /* DESABILITANDO SAFE-MODE */
 SET SQL_SAFE_UPDATES = 0;
-
-

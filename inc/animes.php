@@ -81,9 +81,29 @@ function get_anime_single($id){
 
     }
 
+    //CRIANDO A CHAVE OST NO OBJETO DA QUERIE
+    $anime['nome_ost'] = array();
+
+    try{
+      $results = $db->prepare("
+        select id_ost, nome_ost, image_ost
+        from ost
+        inner join animes on animes.anime_id= id_anime
+        where anime_id = ?;
+      ");
+      $results->bindParam(1, $id);
+      $results->execute();
+
+    } catch(Exception $e) {
+      echo "Data no retrieved";
+    }
+    while($row = $results->fetch(PDO::FETCH_ASSOC)){
+        $anime['nome_ost'][] = $row["nome_ost"];
+        $anime['image_ost'][] = $row["image_ost"];
+
+    }
+    
     return $anime;
-
-
 
 }
 

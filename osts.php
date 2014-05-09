@@ -30,12 +30,13 @@
         
           
           <!-- HELPER ID FOR EDITING ANIME! -->
-          <input name="anime_id_helper" id="anime_id_helper"  value="<?php echo $anime_id_helper; ?>" >
+          <input name="anime_id_helper" type="hidden" id="anime_id_helper"  value="<?php echo $anime_id_helper; ?>" >
       
           
           <a class="linkost" href="#">Click here</a>
           
           <div id="content_pane">
+            
             
             
             

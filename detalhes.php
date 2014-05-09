@@ -52,7 +52,7 @@
               <li><a href="#videos" data-toggle="tab">Vídeos</a></li>
               <li><a href="#ost" data-toggle="tab">OST</a></li>
             </ul>
-      
+
             
             <div class="tab-content">
               
@@ -100,7 +100,16 @@
                 <div class="ani-titulo">
                   <h1>OST</h1>
 
-                 
+                  <?php foreach($anime['id_ost'] as $animeOST){ ?>
+
+                  <div class="ost_item">
+                    <img src="">
+                    <small><?php echo $animeOST; ?></small>
+
+                  </div>
+
+                  <?php } ?>
+
 
                 </div>
               </div>
